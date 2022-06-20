@@ -1,0 +1,13 @@
+###############################################################
+#
+# List of requisites:
+#
+# python3.9.12, pandas,  matplotlib, scikit-learn, keras-tuner
+#
+###############################################################
+
+conda install python = 3.9.12
+conda install pandas
+conda install matplotlib
+conda install scikit-learn
+conda install -c conda-forge keras-tuner
