@@ -182,7 +182,7 @@ print(conf_mat)
 disp = ConfusionMatrixDisplay(confusion_matrix=conf_mat, display_labels=asteroids_label_set)
 disp.plot() 
 # ... and save it
-pathlib.Path(current_path + "/plots").mkdir(parents=True, exist_ok=True)
+pathlib.Path(current_path / "plots").mkdir(parents=True, exist_ok=True)
 plt.savefig(str(current_path) + "/plots/conv_nn_confuion_matrix.pdf")
 print("plots/conv_nn_confuion_matrix.pdf has been created")
 
