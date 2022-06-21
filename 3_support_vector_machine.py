@@ -2,8 +2,10 @@
 
 # Train a support vector machine to make multiclass classification among the four classes of
 # the main classification scheme.
-# We perform a grid search to get the regularization parameter value and the kernel type that
-# maximizes the f1 score of the classificator
+# We perform a grid search to get the regularization parameter and the kernel type that
+# maximizes the f1 score of the classificator. 
+# It is possible to choose the regularization parameter range and the kernel type by passing
+# them as arguments. 
 
 ###############################################################################################
 
