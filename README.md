@@ -79,6 +79,29 @@ $ python 2_spectra_viewer.py
 
 ![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/master/plots/spectra_plot.png)
 
+### 3_support_vector_machine.py
+
+With this script we train a support vector machine to make multiclass classification among the four classes of the main classification scheme.
+The training is done by performing a grid search to get the regularization parameter and the kernel type that maximizes the f1 score of the classificator.
+It is possible to choose the regularization parameter range and the kernel type by passing them as arguments to the 3_support_vector_machine.py script. 
+If no arguments are passed, the default kernels are polynomial and rbf, because they are the ones that gave the best results during testing, and the regularization paramenter is choosen between the range of numpy.logspace(1,2,50) (see: https://numpy.org/doc/stable/reference/generated/numpy.logspace.html for more info). 
+
+To run the script type:
+```
+$ python 3_support_vector_machine.py
+```
+To run the script specifiying the kernel and the range of the regularization parameter C, add the flags --kernel and --C followed by the kernels and regularization parameter range that you prefere. Here's an example:
+```
+$ python 3_support_vector_machine.py --kernel linear poly rbf sigmoid --C 1 3 100
+```
+In this way the support vector machine will be trained using the kernels: linear, polynomial, rbf and sigmoid, and the egularization parameter is choosen among the range given by numpy.logspace(1,3,100).
+
+### 4_conv_neural_network.py
+
+With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme. 
+
+
+
 
 
 ## When you are done
