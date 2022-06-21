@@ -2,6 +2,8 @@
 
 # Train a convolutional neural network classifier to make multiclass classification among the
 # four classes of the main classification scheme. 
+# We use hyperparameter tuning from Keras Tuner to choose the optimal set of hyperparameters
+# for the classifier.
 
 ###############################################################################################
 
@@ -59,8 +61,6 @@ for train_index, test_index in sss.split(asteroids_spectra, asteroids_label):
 # the different weights for each class. We compute those weighs using the sklearn.utils.class_weight
 # function
 sample_weight = compute_sample_weight("balanced", y=label_train)
-
-
 
 
 # Let's now set the architecture of the neural network
@@ -127,8 +127,7 @@ def create_model(hp):
     
     return model
 
-# Let's create our tuner, optimizing a val_loss search. You can replace the Optimizer e.g.
-# with a Bayesion Search or Hyperband optimization
+# Let's create our tuner, optimizing a val_loss search
 tuner = kt.RandomSearch(create_model,
                         objective='val_loss',
                         max_trials=25)
@@ -151,12 +150,10 @@ tuner.search(spectra_train,
 model = tuner.get_best_models()[0]
 
 # Print all tuner results
-# tuner.results_summary()
+tuner.results_summary()
 
 # Model summary
 model.summary()
-
-
 
 
 # Let's now plot the confusion matrix and get the f1 value
