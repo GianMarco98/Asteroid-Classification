@@ -142,8 +142,8 @@ disp.plot()
 
 # ... and save it
 pathlib.Path(current_path / "plots").mkdir(parents=True, exist_ok=True)
-plt.savefig(str(current_path) + "/plots/SVM_confusion_matrix.pdf")
-print("plots/SVM_confusion_matrix.pdf has been created")
+plt.savefig(str(current_path) + "/plots/SVM_confusion_matrix.png")
+print("plots/SVM_confusion_matrix.png has been created")
 
 # Compute the f1 socre using the test dataset
 f1_score = round(sklearn.metrics.f1_score(label_test, label_test_pred, average="weighted"), 3)

@@ -63,5 +63,5 @@ for sub_class,axes in zip(asteroids_df.loc[:,"Main_Group"].unique(),axs.flat):
 
 # Save as a pdf
 pathlib.Path(current_path / "plots").mkdir(parents=True, exist_ok=True)
-plt.savefig(str(current_path) + "/plots/spectra_plot.pdf")
-print("plots/spectra_plot.pdf has been created")
+plt.savefig(str(current_path) + "/plots/spectra_plot.png")
+print("plots/spectra_plot.png has been created")

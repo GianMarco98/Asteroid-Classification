@@ -183,8 +183,8 @@ disp = ConfusionMatrixDisplay(confusion_matrix=conf_mat, display_labels=asteroid
 disp.plot() 
 # ... and save it
 pathlib.Path(current_path / "plots").mkdir(parents=True, exist_ok=True)
-plt.savefig(str(current_path) + "/plots/conv_nn_confuion_matrix.pdf")
-print("plots/conv_nn_confuion_matrix.pdf has been created")
+plt.savefig(str(current_path) + "/plots/conv_nn_confuion_matrix.png")
+print("plots/conv_nn_confuion_matrix.png has been created")
 
 # Compute the f1 score using the test dataset
 f1_score = round(sklearn.metrics.f1_score(asteroid_classes_test,
