@@ -11,6 +11,7 @@
 # Import standard libraries
 import os
 import pathlib
+import argparse
 
 # Import installed libraries
 import numpy as np
@@ -25,6 +26,57 @@ from sklearn.metrics import confusion_matrix,ConfusionMatrixDisplay
 from sklearn.metrics import plot_confusion_matrix
 
 import matplotlib.pyplot as plt
+
+
+
+
+def param_grid_read():
+
+    # Default parameter space
+    C_default = [0,2,50]                # these parameters will enter a numpy.logspace function
+    kernel_default = ['poly','rbf']
+
+    # Read the parameter space if it was passed as an argument
+
+    # Read penality parameter C
+    CLI = argparse.ArgumentParser()
+    CLI.add_argument(
+    "--C",  # name on the CLI - drop the `--` for positional/required parameters
+    nargs=3,
+    type=str,
+    default = C_default,  # default if nothing is provided
+    help = 'Insert float, float, int that will enter a numpy.logspace function as start, stop, num.\
+        \n Default is: 1 2 50'
+    )
+
+    # Read kernel
+    CLI.add_argument(
+    "--kernel",  # name on the CLI - drop the `--` for positional/required parameters
+    nargs="*",  # 0 or more values expected => creates a list
+    type=str,
+    default = kernel_default,  # default if nothing is provided
+    help = 'Specify the kernels (one or more) that will be used. Default is: poly rbf',
+    choices=['linear','poly','rbf','sigmoid']
+    )
+
+    # Parse the command line
+    args = CLI.parse_args()
+
+    # Pccess CLI options
+    start = float(args.C[0])
+    stop = float(args.C[1])
+    num = int(float(args.C[2]))
+    kernel_list = args.kernel
+
+    # Set the parameter grid
+    param_grid=[]
+
+    for kernel in kernel_list:
+        param_grid.append(
+        {'C': np.logspace(start, stop, num), 'kernel': [kernel]}
+        )
+
+    return param_grid
 
 
 
@@ -51,10 +103,7 @@ for ast_type in np.unique(label_train):
     weight_dict[ast_type] = int(1.0 / (len(label_train[label_train == ast_type]) / (len(label_train))))
 
 # Set the parameter space that will be searched
-param_grid = [
-  {'C': np.logspace(0, 2, 50), 'kernel': ['poly']},
-  {'C': np.logspace(0, 2, 50), 'kernel': ['rbf']}
- ]
+param_grid = param_grid_read()
 
 # Set the weights of the SVM classifier equal to the weights that we had computed
 svc = svm.SVC(class_weight=weight_dict)
