@@ -98,7 +98,12 @@ In this way the support vector machine will be trained using the kernels: linear
 
 ### 4_conv_neural_network.py
 
-With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme. 
+With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme. We use hyperparameter tuning from Keras Tuner to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.
+The neural network model is the following one:
+
+*** insert model ***
+
+The hyperparameter search is done on the filters and the kernel size of the two convolutional layers, on the units of the dense layer and on the dropout rate for the dropout layer.
 
 
 

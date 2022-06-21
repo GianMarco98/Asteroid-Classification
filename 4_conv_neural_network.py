@@ -127,6 +127,7 @@ def create_model(hp):
     
     return model
 
+
 # Let's create our tuner, optimizing a val_loss search
 tuner = kt.RandomSearch(create_model,
                         objective='val_loss',
@@ -144,13 +145,13 @@ tuner.search(spectra_train,
              validation_split=0.25,
              epochs=end_epoch,
              sample_weight=sample_weight,
-             callbacks=[es_callback, keras.callbacks.TensorBoard()])
+             callbacks=es_callback)
 
 # Get the best model
 model = tuner.get_best_models()[0]
 
 # Print all tuner results
-tuner.results_summary()
+# tuner.results_summary()
 
 # Model summary
 model.summary()
