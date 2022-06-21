@@ -77,7 +77,7 @@ If you want to run the script to create the plot, just type:
 $ python 2_spectra_viewer.py
 ```
 
-![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/master/plots/spectra_plot.pdf)
+![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/master/plots/spectra_plot.png)
 
 
 
