@@ -38,9 +38,10 @@ asteroids_spectra = np.array([k["Reflectance_norm550nm"].tolist() for k in aster
 asteroids_label = np.array(asteroids_df["Main_Group"].to_list())
 
 # In order to make a convolutional network, we need to use a dataset with 3 dimentions:
-# data, number of imputs, number of features.
-# In our case we have 1339 asteroids, wavelenghts from 0.92 to 0.44 μm -> 49 inputs
-# and 1 feature for each input (reflectance value)
+# data, number of imputs, number of features per imput.
+# In our case we have 1339 asteroids, wavelenghts from 0.92 to 0.44 μm -> 49 inputs.
+# We need to include 1 feature for each input (reflectance value), so we expand the
+# asteroid_spectra array, from (1339, 49) to (1339, 49, 1)
 asteroids_spectra = np.expand_dims(asteroids_spectra, axis=2)
 
 # Encode the string-based labels using a One-Hot-Encoder (e.g., C becomes [1, 0, 0, 0],
@@ -75,11 +76,11 @@ n_inputs = asteroids_spectra.shape[1]
 normalizer = keras.layers.Normalization(axis=1)
 normalizer.adapt(spectra_train)
 
-# Create a model using a hyperparameter space 'hp' in which we will search the
-# bet set of parameters
+# Create a dense convolutional neural network using a hyperparameter space 'hp' in which we will
+# search the bet set of parameters (filters and kernel size for convolutional layers, units of 
+# the dense layer and dropout rate for the dropout layer)
 def create_model(hp):
     
-    # Create now a Dense based network
     input_layer = keras.Input(shape=(n_inputs, 1))
 
     norm_layer = normalizer(input_layer)
@@ -93,6 +94,7 @@ def create_model(hp):
                                                           min_value=3,
                                                           max_value=7,
                                                           step=1))(norm_layer)
+
     hidden_layer = keras.layers.MaxPooling1D(pool_size=2)(hidden_layer)
     
     hidden_layer = keras.layers.Conv1D(filters=hp.Int("2nd_filters",
@@ -103,10 +105,12 @@ def create_model(hp):
                                        kernel_size=hp.Int("2nd_kernel_size",
                                                           min_value=3,
                                                           max_value=7,
-                                                          step=1))(norm_layer)
+                                                          step=1))(hidden_layer)
+
     hidden_layer = keras.layers.MaxPooling1D(pool_size=2)(hidden_layer)
     
     hidden_layer = keras.layers.Flatten()(hidden_layer)
+
     hidden_layer = keras.layers.Dense(hp.Int("units", min_value=8, max_value=64, step=8),
                                       activation="relu")(hidden_layer)
 
@@ -123,7 +127,7 @@ def create_model(hp):
     model = keras.models.Model(inputs=input_layer, outputs=output_layer)
     
     # Compile the model. Since we have one-hot encoded classes we use the categorical crossentropy
-    model.compile(optimizer='adam', loss='categorical_crossentropy', weighted_metrics=None)
+    model.compile(optimizer='adam', loss='categorical_crossentropy', weighted_metrics=[])
     
     return model
 
@@ -145,7 +149,7 @@ tuner.search(spectra_train,
              validation_split=0.25,
              epochs=end_epoch,
              sample_weight=sample_weight,
-             callbacks=es_callback)
+             callbacks=[es_callback])
 
 # Get the best model
 model = tuner.get_best_models()[0]
