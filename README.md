@@ -53,7 +53,7 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
 
 2. Create a virtual environment with all the libraries that are needed to run the python scripts. You can create a virtual environment using Anaconda or virtualenv.
 
-   - Anaconda
+   - **Anaconda**
 
       1. Install anaconda3: https://docs.anaconda.com/anaconda/install/.
 
@@ -70,7 +70,7 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
       $ source deactivate
       ```
 
-   - Virtualenv
+   - **Virtualenv**
 
       1. Install virtaulenv
          ```
@@ -151,7 +151,7 @@ The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'p
 
 1. Remove the virtual environment
 
-   - Anaconda 
+   - **Anaconda**
 
       Get out of the environment
       ```
@@ -162,7 +162,7 @@ The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'p
       conda env remove -n ast_env
       ```
 
-   - virtualenv
+   - **virtualenv**
 
       Get out of the environment
       ```
