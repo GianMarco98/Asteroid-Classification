@@ -224,5 +224,3 @@ print("Directory data/lvl1 created")
 
 # Save the dataframe as a pickle file
 asteroids_df.to_pickle(os.path.join(current_path, "data/lvl1/", "asteroids.pkl"), protocol=4)
-
-print(asteroids_df)
