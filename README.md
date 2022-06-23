@@ -46,25 +46,25 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
    ```
    git clone https://github.com/GianMarco98/Asteroid-Classification.git
    ```
-   Enter the repository
+3. Enter the repository
    ```
    cd Asteroid-Classification
    ```
 
-2. Create a virtual environment with all the libraries that are needed to run the python scripts. You can create a virtual environment using Anaconda or virtualenv.
+4. Create a virtual environment with all the libraries that are needed to run the python scripts. You can create a virtual environment using Anaconda or virtualenv.
 
    - **Anaconda**
 
       1. Install anaconda3: https://docs.anaconda.com/anaconda/install/.
 
       2. Create a virtual environment named ast_env with all the necessary libraries listed in environment.yml
-      ```
-      $ conda env create -f environment.yml
-      ```
-      and activate it
-      ```
-      $ source activate ast_env
-      ```
+         ```
+         $ conda env create -f environment.yml
+         ```
+      3. and activate it
+         ```
+         $ source activate ast_env
+         ```
 
    - **Virtualenv**
 
