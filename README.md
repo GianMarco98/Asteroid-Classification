@@ -32,7 +32,8 @@ The next figure shows how the asteroid spectra are associated to their proper cl
 
 The faint horizontal lines shown with the Bus/Bus-DeMeo spectra represent a relative reflectance of 1, where all spectra have (by convention) been normalized to 1 at 0.55 µm. That particular wavelength is chosen for normalizing to because it is the effective wavelength midpoint of a standard V (visible) band photometric filter.  
 The letters used on the designation classes aren't entirely arbitrary, at least it wasn't in the early days of asteroid taxonomy. Most of the early assigned letters had some meaning often related to colour, suspected composition, or meteorite analog. This loosened as time went on and the choice of letters became more limited.  
-In general, any inferred mineral assemblage of one asteroid in a taxonomic class should be applicable to others in the same class, but it doesn’t necessarily mean that all asteroids in a class have the same composition.
+In general, any inferred mineral assemblage of one asteroid in a taxonomic class should be applicable to others in the same class, but it doesn’t necessarily mean that all asteroids in a class have the same composition.  
+Let's now see how we can build a classifier that can distinguish between the 4 classes of the Main Group: C, S, X and Other.
 
 ## Setup
 
@@ -113,10 +114,10 @@ $ python 2_spectra_viewer.py
 ### 3_support_vector_machine.py
 
 With this script we train a support vector machine (SVM) to make multiclass classification among the four classes of the main classification scheme.
-We choosed SVM because of its effectiveness in high dimentional spaces [4].
+I choosed SVM because of its effectiveness in high dimentional spaces [4].  
 The training is done by performing a grid search to get the regularization parameter and the kernel type that maximizes the f1 score of the classificator.
-It is possible to choose the regularization parameter range and the kernel type by passing them as arguments to the 3_support_vector_machine.py script. 
-If no arguments are passed, the default kernels are polynomial and rbf, because they are the ones that gave the best results during testing, and the regularization paramenter is choosen between the range of numpy.logspace(1,2,50) (see: https://numpy.org/doc/stable/reference/generated/numpy.logspace.html for more info). 
+It is possible to choose the regularization parameter range and the kernel type by passing them as arguments to the 3_support_vector_machine.py script.  
+If no arguments are passed, the default kernels are polynomial and rbf, because they are the ones that gave the best results during testing, and the regularization paramenter is choosen between the range of numpy.logspace(1,2,50) (see: https://numpy.org/doc/stable/reference/generated/numpy.logspace.html for more info).  
 
 To run the script type:
 ```
@@ -132,19 +133,19 @@ The confusion matrix plot 'SVM_confusion_matrix.png' will be saved on the 'plots
 
 ### 4_conv_neural_network.py
 
-With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme.
-We use convolutionasl neural network because of their **local connectivity** propriety: neurons in one layer are only connected to neurons in the next layer that are spatially close to them. This design trims the vast majority of connections between consecutive layers, but keeps the ones that carry the most useful information. The assumption made here is that the input data has spatial significance, or in the example of computer vision, the relationship between two distant pixels is probably less significant than two close neighbors.
-In out case, the asteroid spectra are continuus functions, so each point of the spectra function is related to its neighbors.
+With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme.  
+I choosed convolutionasl neural network because of their **local connectivity** propriety: neurons in one layer are only connected to neurons in the next layer that are spatially close to them. This design trims the vast majority of connections between consecutive layers, but keeps the ones that carry the most useful information. The assumption made here is that the input data has spatial significance, or in the example of computer vision, the relationship between two distant pixels is probably less significant than two close neighbors.  
+In out case, the asteroid spectra are continuus functions, so each point of the spectra function is related to its neighbors.  
 
-We use hyperparameter tuning from Keras Tuner to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.
-The hyperparameter search is done on the filters and the kernel size of the two convolutional layers, on the units of the dense layer and on the dropout rate for the dropout layer.
+We use the Hyperband optimization algorithm [5] to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.  
+The hyperparameter search is done on the filters and the kernel size of the two convolutional layers, on the units of the dense layer and on the dropout rate for the dropout layer.  
 
 To run the script type:
 ```
 $ python 4_conv_neural_network.py
 ```
-Each trained model will be saved in the folder 'tuner_models'.
-The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'plots' folder. 
+Each trained model will be saved in the folder 'tuner_models'.  
+The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'plots' folder.
 
 ## When you are done
 
@@ -179,6 +180,14 @@ rm -r ast_env
 rm -r ..............................................
 ```
 
+## Conclusions
+
+Using Support Vector Machines (SVM) and Deep Convolutional Neural Network (DCNN) it was possible to build two classifiers that can distiguish between the four classes of the Main Group classification of asteroids.
+During the training of the two classifiers, it was noticed that the SVM took less time to train (also because it is less complex and has less parameters) respect to the convolutional neural netwok, and still has a f1 score close (but slightly lower) that the one of the DCNN.  
+I tried different architectures for the DCNN, and the one presented in this project was the best one, but there is still space for improvements in this architecture.  
+We need to consider also that the dataset used for this project isn't that big, and maybe using a larger dataset or expanding the one that we have using generative models could help. This indeed could be a nice topic for future works.  
+Thanks to this project I had the possbility to explore the topic of machine learnig and choose the classifiers that could better work with this type of dataset. But given the incredibly large number of classifiers that exists, surely there are more that could be used; this project was only the starting point.
+
 ## Bibliography 
 
 [1] A History of Asteroid Classification. https://vissiniti.com/asteroid-classification/.
@@ -187,3 +196,4 @@ survey”. PhD thesis. Massachusetts Institute of Technology, Jan. 1999.
 [3] D.J. Tholen. “Asteroid taxonomic classifications”. In: United States: University of Arizona Press
 (1989), pp. 1139–1150.
 [4] https://scikit-learn.org/stable/modules/svm.html
+[5] arXiv:1603.06560 [cs.LG]
