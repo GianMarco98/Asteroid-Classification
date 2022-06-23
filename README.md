@@ -24,6 +24,7 @@ It is possible to distinguish  4 main groups:
 - S: Silicaceous (stony) asteroids.
 - X: Metallic asteroids.
 - Other: Miscellaneous types of rare origin / composition; or even unknown composition like T-Asteroids.  
+
 The most common classification schemes are the SMASSII classification by Schelte J. Bus (or Bus classification) [2] and the Tholen classification [3]. In this project we will use the SMASSII classification.  
 The next figure shows how the asteroid spectra are associated to their proper classes in the various classification schemes.
 
