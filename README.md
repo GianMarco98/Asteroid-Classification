@@ -7,7 +7,31 @@ Spectra dataset: Small Main-Belt Asteroid Spectroscopic Survey (http://smass.mit
 
 When sunlight hits the surface of an asteroid, electromagnetic radiation is transmitted through the near-surface minerals which absorb or emit radiation at certain wavelengths which are characteristic of the particular mineral species present. It is then possible to measure and plot the reflectance (fraction of incident electromagnetic power that is reflected) vs wavelength. An example is shown in figure:
 
+![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/master/plots/ceresReflectanceSpectra.png)
 
+The features in the processed spectrum, such as slope steepness (usually defined from 0.7–1.5µm), curvature, absorption band positions, widths and depths together imply which minerals may be present on the surface of the asteroid.
+The measured (inferred) surface composition may or may not be characteristic of the composition of the asteroid as a whole, depending on the asteroid’s geological history.
+
+## Asteroid taxonomy
+
+It is possible to classify asteroids relying on their chemical composition, that is analyzed trough their reflectance spectra. There are many classification schemes, the most common ones are shown in figure: 
+
+![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/master/plots/taxonomies.jpg)
+
+Note that the unequal vertical extents of each of the three strands on the left hand side of the diagram do not represent relative proportions of asteroids, but the number of sub-types that the particular class (C, S, U) splits into as more data become available over subsequent years, as you move across the diagram. For example, even though most asteroids observed belong to the C-complex (on the far right of the diagram), the early-defined S class (on the far left of the diagram) splits into more distinct classes and sub-types than does the C class as the asteroid taxonomies evolve from left to right.
+It is possible to distinguish  4 main groups:
+- C: Carbonaceous asteroids
+- S: Silicaceous (stony) asteroids
+- X: Metallic asteroids
+- Other: Miscellaneous types of rare origin / composition; or even unknown composition like T-Asteroids
+The most common classification schemes are the Tholen classification and SMASSII classification by Schelte J. Bus (or Bus classification). In this project we will use the SMASSII classification.
+The next figure shows how the asteroid spectra are associated to their appropriate classes in the various classification schemes.
+
+![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/master/plots/spectraClassification.jpg)
+
+The faint horizontal lines shown with the Bus/Bus-DeMeo spectra represent a relative reflectance of 1, where all spectra have (by convention) been normalized to 1 at 0.55 µm. That particular wavelength is chosen for normalizing to because it is the effective wavelength midpoint of a standard V (visible) band photometric filter.
+The letter designation of the classes isn't entirely arbitrary, at least it wasn't in the early days of asteroid taxonomy. Most of the early assigned letters had some meaning often related to colour, suspected composition, or meteorite analog. This loosened as time went on and the choice of letters became more limited.
+In general, any inferred mineral assemblage of one asteroid in a taxonomic class should be applicable to others in the same class, but it doesn’t necessarily mean that all asteroids in a class have the same composition.
 
 ## Setup
 
