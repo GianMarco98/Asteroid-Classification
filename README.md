@@ -91,7 +91,7 @@ The original data is downloaded and stored in data/lvl0.
 The enriched data is stored in data/lvl1.
 The level stands for the level of feature engeneering that is done to the dataset.
 
-The data is already downloaded and enriched inside the "data" folder, but if you want to run the script, just type:
+The data is already downloaded and enriched inside the "data" folder, but if you want to run the script, just run:
 ```
 $ python 1_data_parse.py
 ```
@@ -100,7 +100,7 @@ $ python 1_data_parse.py
 
 This script creates the file "spectra_plot.pdf", that shows the asteroid spectra for all four types of astroid in the Main Group. In this way it is possible to inspect by eye the proprieties of the different Main Group types: C,S,X and Other. 
 The file "spectra_plot.pdf" is already present inside the "plots" folder, and it is shown here.
-If you want to run the script to create the plot, just type:
+If you want to run the script to create the plot, just run:
 ```
 $ python 2_spectra_viewer.py
 ```
@@ -115,7 +115,7 @@ The training is done by performing a grid search to get the regularization param
 It is possible to choose the regularization parameter range and the kernel type by passing them as arguments to the 3_support_vector_machine.py script.  
 If no arguments are passed, the default kernels are polynomial and rbf, because they are the ones that gave the best results during testing, and the regularization paramenter is choosen between the range of numpy.logspace(1,2,50) (see: https://numpy.org/doc/stable/reference/generated/numpy.logspace.html for more info).  
 
-To run the script type:
+Run the script:
 ```
 $ python 3_support_vector_machine.py
 ```
@@ -136,7 +136,7 @@ In out case, the asteroid spectra are continuus functions, so each point of the 
 We use the Hyperband optimization algorithm [5] to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.  
 The hyperparameter search is done on the filters and the kernel size of the two convolutional layers, on the units of the dense layer and on the dropout rate for the dropout layer.  
 
-To run the script type:
+Run the script:
 ```
 $ python 4_conv_neural_network.py
 ```
@@ -171,7 +171,7 @@ The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'p
 
 2. Delete the project folder
 
-   Inside the folder Asteroid-Classification write
+   Inside the folder Asteroid-Classification run:
    ```
    rm -fr .git
    cd ..
