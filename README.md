@@ -65,10 +65,6 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
       ```
       $ source activate ast_env
       ```
-      to deactivate the environment when you are done, just type:
-      ```
-      $ source deactivate
-      ```
 
    - **Virtualenv**
 
@@ -76,7 +72,7 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
          ```
          pip install virtualenv
          ```
-      2. Create the virtaul environment
+      2. Create the virtual environment named ast_env
          ```
          virtaulenv ast_env
          ```
@@ -188,10 +184,10 @@ Thanks to this project I had the possbility to explore the topic of machine lear
 
 ## Bibliography 
 
-[1] A History of Asteroid Classification. https://vissiniti.com/asteroid-classification/.
+[1] A History of Asteroid Classification. https://vissiniti.com/asteroid-classification/.  
 [2] Schelte John Bus. “Compositional structure in the asteroid belt: Results of a spectroscopic
-survey”. PhD thesis. Massachusetts Institute of Technology, Jan. 1999.
+survey”. PhD thesis. Massachusetts Institute of Technology, Jan. 1999.  
 [3] D.J. Tholen. “Asteroid taxonomic classifications”. In: United States: University of Arizona Press
-(1989), pp. 1139–1150.
-[4] https://scikit-learn.org/stable/modules/svm.html
+(1989), pp. 1139–1150.  
+[4] https://scikit-learn.org/stable/modules/svm.html  
 [5] arXiv:1603.06560 [cs.LG]
