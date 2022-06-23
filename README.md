@@ -53,38 +53,38 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
 
 2. Create a virtual environment with all the libraries that are needed to run the python scripts. You can create a virtual environment using Anaconda or virtualenv.
 
-### Anaconda
+   - Anaconda
 
-1. Install anaconda3: https://docs.anaconda.com/anaconda/install/.
+      1. Install anaconda3: https://docs.anaconda.com/anaconda/install/.
 
-2. Create a virtual environment named ast_env with all the necessary libraries listed in environment.yml
-```
-$ conda env create -f environment.yml
-```
-and activate it
-```
-$ source activate ast_env
-```
-to deactivate the environment when you are done, just type:
-```
-$ source deactivate
-```
+      2. Create a virtual environment named ast_env with all the necessary libraries listed in environment.yml
+      ```
+      $ conda env create -f environment.yml
+      ```
+      and activate it
+      ```
+      $ source activate ast_env
+      ```
+      to deactivate the environment when you are done, just type:
+      ```
+      $ source deactivate
+      ```
 
-### Virtualenv
+   - Virtualenv
 
-1. Install virtaulenv
-   ```
-   pip install virtualenv
-   ```
-2. Create the virtaul environment
-   ```
-   virtaulenv ast_env
-   ```
-3. Activate the virtual environment and download the requirements
-   ```
-   source ast_env/bin/activate
-   pip install -r requirements.txt
-   ```
+      1. Install virtaulenv
+         ```
+         pip install virtualenv
+         ```
+      2. Create the virtaul environment
+         ```
+         virtaulenv ast_env
+         ```
+      3. Activate the virtual environment and download the requirements
+         ```
+         source ast_env/bin/activate
+         pip install -r requirements.txt
+         ```
 
 ## The code
 
@@ -134,7 +134,7 @@ The confusion matrix plot 'SVM_confusion_matrix.png' will be saved on the 'plots
 ### 4_conv_neural_network.py
 
 With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme.  
-I choosed convolutionasl neural network because of their **local connectivity** propriety: neurons in one layer are only connected to neurons in the next layer that are spatially close to them. This design trims the vast majority of connections between consecutive layers, but keeps the ones that carry the most useful information. The assumption made here is that the input data has spatial significance, or in the example of computer vision, the relationship between two distant pixels is probably less significant than two close neighbors.  
+I choosed convolutional neural network because of their **local connectivity** propriety: neurons in one layer are only connected to neurons in the next layer that are spatially close to them. This design trims the vast majority of connections between consecutive layers, but keeps the ones that carry the most useful information. The assumption made here is that the input data has spatial significance, or in the example of computer vision, the relationship between two distant pixels is probably less significant than two close neighbors.  
 In out case, the asteroid spectra are continuus functions, so each point of the spectra function is related to its neighbors.  
 
 We use the Hyperband optimization algorithm [5] to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.  
@@ -149,31 +149,29 @@ The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'p
 
 ## When you are done
 
-1. Remove the virtual environment 
+1. Remove the virtual environment
 
-### Anaconda 
+   - Anaconda 
 
-Get out of the environment
-```
-conda deactivate
-```
-delete the environment
-```
-conda env remove -n ast_env
-```
+      Get out of the environment
+      ```
+      conda deactivate
+      ```
+      delete the environment
+      ```
+      conda env remove -n ast_env
+      ```
 
-### virtualenv
+   - virtualenv
 
-Get out of the environment
-```
-deactivate
-```
-delete the environment
-```
-rm -r ast_env
-```
-
-
+      Get out of the environment
+      ```
+      deactivate
+      ```
+      delete the environment
+      ```
+      rm -r ast_env
+      ```
 
 2. Delete the project folder
 ```
@@ -185,7 +183,7 @@ rm -r ..............................................
 Using Support Vector Machines (SVM) and Deep Convolutional Neural Network (DCNN) it was possible to build two classifiers that can distiguish between the four classes of the Main Group classification of asteroids.
 During the training of the two classifiers, it was noticed that the SVM took less time to train (also because it is less complex and has less parameters) respect to the convolutional neural netwok, and still has a f1 score close (but slightly lower) that the one of the DCNN.  
 I tried different architectures for the DCNN, and the one presented in this project was the best one, but there is still space for improvements in this architecture.  
-We need to consider also that the dataset used for this project isn't that big, and maybe using a larger dataset or expanding the one that we have using generative models could help. This indeed could be a nice topic for future works.  
+We need to consider also that the dataset used for this project isn't that big, and maybe using a larger dataset or expanding the one that we have using generative models could help. The latter indeed could be a nice topic for future works.  
 Thanks to this project I had the possbility to explore the topic of machine learnig and choose the classifiers that could better work with this type of dataset. But given the incredibly large number of classifiers that exists, surely there are more that could be used; this project was only the starting point.
 
 ## Bibliography 
