@@ -171,12 +171,12 @@ The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'p
 
 2. Delete the project folder
 
-Inside the folder Asteroid-Classification write
-```
-rm -fr .git
-cd ..
-rm -r Asteroid-Classification
-```
+   Inside the folder Asteroid-Classification write
+   ```
+   rm -fr .git
+   cd ..
+   rm -r Asteroid-Classification
+   ```
 
 ## Conclusions
 
