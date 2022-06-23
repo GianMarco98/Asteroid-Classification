@@ -113,10 +113,10 @@ The confusion matrix plot 'SVM_confusion_matrix.png' will be saved on the 'plots
 
 With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme.  
 I choosed convolutional neural network because of their **local connectivity** propriety: neurons in one layer are only connected to neurons in the next layer that are spatially close to them. This design trims the vast majority of connections between consecutive layers, but keeps the ones that carry the most useful information. The assumption made here is that the input data has spatial significance, or in the example of computer vision, the relationship between two distant pixels is probably less significant than two close neighbors.  
-In out case, the asteroid spectra are continuus functions, so each point of the spectra function is related to its neighbors.  
+In our case, the asteroid spectra are continuus functions, so each point of the spectra function is related to its neighbors.  
 
 We use the Hyperband optimization algorithm [5] to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.  
-The hyperparameter search is done on the filters and the kernel size of the two convolutional layers, on the units of the dense layer and on the dropout rate for the dropout layer.  
+The hyperparameter search is done on the filters and the kernel size of the two convolutional layers, on the units of the dense layer and on the dropout rate of the dropout layer.  
 
 Run the script:
 ```
@@ -153,7 +153,8 @@ Using Support Vector Machines (SVM) and Deep Convolutional Neural Network (DCNN)
 During the training of the two classifiers, it was noticed that the SVM took less time to train (also because it is less complex and has less parameters) respect to the convolutional neural netwok, and still has a f1 score close (but slightly lower) that the one of the DCNN.  
 I tried different architectures for the DCNN, and the one presented in this project was the best one, but there is still space for improvements in this architecture.  
 We need to consider also that the dataset used for this project isn't that big, and maybe using a larger dataset or expanding the one that we have using generative models could help. The latter indeed could be a nice topic for future works.  
-Thanks to this project I had the possbility to explore the topic of machine learnig and choose the classifiers that could better work with this type of dataset. But given the incredibly large number of classifiers that exists, surely there are more that could be used; this project was only the starting point.
+
+Thanks to this project I had the possbility to explore the topic of machine learnig and choose the classifiers that could better work with this type of dataset, but given the incredibly large number of classifiers that exists, surely there are more that could be used; this project was only the starting point.
 
 ## Bibliography 
 
