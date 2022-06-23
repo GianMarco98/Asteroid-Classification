@@ -1,7 +1,7 @@
 # Asteroid-Classification
 
 This project will use Support vector Machines and Convolutional Neural Networks to classify asteroids using only their reflectance spectra.
-Spectra dataset: Small Main-Belt Asteroid Spectroscopic Survey (http://smass.mit.edu/smass.html, Reference [2]).
+Spectra dataset: Small Main-Belt Asteroid Spectroscopic Survey (http://smass.mit.edu/smass.html, at "Reference [2]").
 
 ## Asteroid spectra
 
@@ -14,7 +14,7 @@ The measured (inferred) surface composition may or may not be characteristic of 
 
 ## Asteroid taxonomy
 
-It is possible to classify asteroids relying on their chemical composition, that is analyzed trough their reflectance spectra. There are many classification schemes, the most common ones are shown in figure: 
+It is possible to classify asteroids relying on their chemical composition, that is analyzed trough their reflectance spectra. There are many classification schemes, the most common ones are shown in figure [1]: 
 
 ![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/master/plots/taxonomies.jpg)
 
@@ -24,7 +24,7 @@ It is possible to distinguish  4 main groups:
 - S: Silicaceous (stony) asteroids
 - X: Metallic asteroids
 - Other: Miscellaneous types of rare origin / composition; or even unknown composition like T-Asteroids
-The most common classification schemes are the Tholen classification and SMASSII classification by Schelte J. Bus (or Bus classification). In this project we will use the SMASSII classification.
+The most common classification schemes are the SMASSII classification by Schelte J. Bus (or Bus classification) [2] and the Tholen classification [3]. In this project we will use the SMASSII classification.
 The next figure shows how the asteroid spectra are associated to their appropriate classes in the various classification schemes.
 
 ![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/master/plots/spectraClassification.jpg)
@@ -112,7 +112,7 @@ $ python 2_spectra_viewer.py
 ### 3_support_vector_machine.py
 
 With this script we train a support vector machine (SVM) to make multiclass classification among the four classes of the main classification scheme.
-We choosed SVM because of its effectiveness in high dimentional spaces.
+We choosed SVM because of its effectiveness in high dimentional spaces [4].
 The training is done by performing a grid search to get the regularization parameter and the kernel type that maximizes the f1 score of the classificator.
 It is possible to choose the regularization parameter range and the kernel type by passing them as arguments to the 3_support_vector_machine.py script. 
 If no arguments are passed, the default kernels are polynomial and rbf, because they are the ones that gave the best results during testing, and the regularization paramenter is choosen between the range of numpy.logspace(1,2,50) (see: https://numpy.org/doc/stable/reference/generated/numpy.logspace.html for more info). 
@@ -136,35 +136,6 @@ We use convolutionasl neural network because of their **local connectivity** pro
 In out case, the asteroid spectra are continuus functions, so each point of the spectra function is related to its neighbors.
 
 We use hyperparameter tuning from Keras Tuner to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.
-The neural network model is the following one:
-
- Layer (type)                Output Shape              Param # =================================================================                                         input_1 (InputLayer)        [(None, 49, 1)]           0
-
- normalization (Normalizatio  (None, 49, 1)            99
- n)
-
- conv1d (Conv1D)             (None, 44, 32)            224
-
- max_pooling1d (MaxPooling1D  (None, 22, 32)           0
- )
-
- conv1d_1 (Conv1D)           (None, 19, 80)            10320
- 
- max_pooling1d_1 (MaxPooling  (None, 9, 80)            0
- 1D)
-
- flatten (Flatten)           (None, 720)               0
- 
- dense (Dense)               (None, 56)                40376
- 
- dense_1 (Dense)             (None, 4)                 228
- 
- =================================================================
- Total params: 51,247
- Trainable params: 51,148
- Non-trainable params: 99
- _________________________________________________________________
-
 The hyperparameter search is done on the filters and the kernel size of the two convolutional layers, on the units of the dense layer and on the dropout rate for the dropout layer.
 
 To run the script type:
@@ -209,4 +180,9 @@ rm -r ..............................................
 
 ## Bibliography 
 
-https://scikit-learn.org/stable/modules/svm.html
+[1] A History of Asteroid Classification. https://vissiniti.com/asteroid-classification/.
+[2] Schelte John Bus. “Compositional structure in the asteroid belt: Results of a spectroscopic
+survey”. PhD thesis. Massachusetts Institute of Technology, Jan. 1999.
+[3] D.J. Tholen. “Asteroid taxonomic classifications”. In: United States: University of Arizona Press
+(1989), pp. 1139–1150.
+[4] https://scikit-learn.org/stable/modules/svm.html
