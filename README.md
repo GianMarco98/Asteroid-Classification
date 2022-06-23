@@ -7,7 +7,7 @@ Spectra dataset: Small Main-Belt Asteroid Spectroscopic Survey (http://smass.mit
 
 When sunlight hits the surface of an asteroid, electromagnetic radiation is transmitted through the near-surface minerals which absorb or emit radiation at certain wavelengths which are characteristic of the particular mineral species present. It is then possible to measure and plot the reflectance (fraction of incident electromagnetic power that is reflected) vs wavelength. An example is shown in figure:
 
-![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/tree/main/plots/ceresReflectanceSpectra.png)
+![alt text](https://github.com/GianMarco98/Asteroid-Classification/blob/main/plots/ceresReflectanceSpectra.png)
 
 The features in the processed spectrum, such as slope steepness (usually defined from 0.7–1.5 µm), curvature, absorption band positions and width imply which minerals may be present on the surface of the asteroid.
 The measured (inferred) surface composition may or may not be characteristic of the composition of the asteroid as a whole, depending on the asteroid’s geological history.
