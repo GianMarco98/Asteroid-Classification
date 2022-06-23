@@ -1,7 +1,13 @@
 # Asteroid-Classification
 
 This project will use Support vector Machines and Convolutional Neural Networks to classify asteroids using only their reflectance spectra.
-Spectra dataset: Small Main-Belt Asteroid Spectroscopic Survey (http://smass.mit.edu/smass.html).
+Spectra dataset: Small Main-Belt Asteroid Spectroscopic Survey (http://smass.mit.edu/smass.html, Reference [2]).
+
+## Asteroid spectra
+
+When sunlight hits the surface of an asteroid, electromagnetic radiation is transmitted through the near-surface minerals which absorb or emit radiation at certain wavelengths which are characteristic of the particular mineral species present. It is then possible to measure and plot the reflectance (fraction of incident electromagnetic power that is reflected) vs wavelength. An example is shown in figure:
+
+
 
 ## Setup
 
@@ -54,7 +60,7 @@ $ source deactivate
    pip install -r requirements.txt
    ```
 
-## Run the code
+## The code
 
 ### 1_data_parse.py 
 
@@ -81,7 +87,8 @@ $ python 2_spectra_viewer.py
 
 ### 3_support_vector_machine.py
 
-With this script we train a support vector machine to make multiclass classification among the four classes of the main classification scheme.
+With this script we train a support vector machine (SVM) to make multiclass classification among the four classes of the main classification scheme.
+We choosed SVM because of its effectiveness in high dimentional spaces.
 The training is done by performing a grid search to get the regularization parameter and the kernel type that maximizes the f1 score of the classificator.
 It is possible to choose the regularization parameter range and the kernel type by passing them as arguments to the 3_support_vector_machine.py script. 
 If no arguments are passed, the default kernels are polynomial and rbf, because they are the ones that gave the best results during testing, and the regularization paramenter is choosen between the range of numpy.logspace(1,2,50) (see: https://numpy.org/doc/stable/reference/generated/numpy.logspace.html for more info). 
@@ -96,18 +103,52 @@ $ python 3_support_vector_machine.py --kernel linear poly rbf sigmoid --C 1 3 10
 ```
 In this way the support vector machine will be trained using the kernels: linear, polynomial, rbf and sigmoid, and the egularization parameter is choosen among the range given by numpy.logspace(1,3,100).
 
+The confusion matrix plot 'SVM_confusion_matrix.png' will be saved on the 'plots' folder. 
+
 ### 4_conv_neural_network.py
 
-With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme. We use hyperparameter tuning from Keras Tuner to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.
+With this script we train a convolutional neural network classifier to make multiclass classification among the four classes of the main classification scheme.
+We use convolutionasl neural network because of their **local connectivity** propriety: neurons in one layer are only connected to neurons in the next layer that are spatially close to them. This design trims the vast majority of connections between consecutive layers, but keeps the ones that carry the most useful information. The assumption made here is that the input data has spatial significance, or in the example of computer vision, the relationship between two distant pixels is probably less significant than two close neighbors.
+In out case, the asteroid spectra are continuus functions, so each point of the spectra function is related to its neighbors.
+
+We use hyperparameter tuning from Keras Tuner to choose the optimal set of hyperparameters that minimizes the validation loss of the classifier.
 The neural network model is the following one:
 
-*** insert model ***
+ Layer (type)                Output Shape              Param # =================================================================                                         input_1 (InputLayer)        [(None, 49, 1)]           0
+
+ normalization (Normalizatio  (None, 49, 1)            99
+ n)
+
+ conv1d (Conv1D)             (None, 44, 32)            224
+
+ max_pooling1d (MaxPooling1D  (None, 22, 32)           0
+ )
+
+ conv1d_1 (Conv1D)           (None, 19, 80)            10320
+ 
+ max_pooling1d_1 (MaxPooling  (None, 9, 80)            0
+ 1D)
+
+ flatten (Flatten)           (None, 720)               0
+ 
+ dense (Dense)               (None, 56)                40376
+ 
+ dense_1 (Dense)             (None, 4)                 228
+ 
+ =================================================================
+ Total params: 51,247
+ Trainable params: 51,148
+ Non-trainable params: 99
+ _________________________________________________________________
 
 The hyperparameter search is done on the filters and the kernel size of the two convolutional layers, on the units of the dense layer and on the dropout rate for the dropout layer.
 
-
-
-
+To run the script type:
+```
+$ python 4_conv_neural_network.py
+```
+Each trained model will be saved in the folder 'tuner_models'.
+The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'plots' folder. 
 
 ## When you are done
 
@@ -141,3 +182,7 @@ rm -r ast_env
 ```
 rm -r ..............................................
 ```
+
+## Bibliography 
+
+https://scikit-learn.org/stable/modules/svm.html
