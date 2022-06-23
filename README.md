@@ -44,7 +44,7 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
 
 2. Download the project in a new directory
    ```
-   git clone https://github.com/GianMarco98/Asteroid-Classification/edit/master/
+   git clone https://github.com/GianMarco98/Asteroid-Classification/tree/master
    ```
    Enter the repository
    ```
