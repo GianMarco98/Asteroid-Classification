@@ -51,36 +51,18 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
    cd Asteroid-Classification
    ```
 
-4. Create a virtual environment with all the libraries that are needed to run the python scripts. You can create a virtual environment using Anaconda or virtualenv.
+4. Create a virtual environment with all the libraries that are needed to run the python scripts. You can create a virtual environment using Anaconda:
 
-   - **Anaconda**
+   1. Install anaconda3: https://docs.anaconda.com/anaconda/install/.
 
-      1. Install anaconda3: https://docs.anaconda.com/anaconda/install/.
-
-      2. Create a virtual environment named ast_env with all the necessary libraries listed in environment.yml
-         ```
-         $ conda env create -f environment.yml
-         ```
-      3. and activate it
-         ```
-         $ source activate ast_env
-         ```
-
-   - **Virtualenv**
-
-      1. Install virtaulenv
-         ```
-         pip install virtualenv
-         ```
-      2. Create the virtual environment named ast_env
-         ```
-         virtaulenv ast_env
-         ```
-      3. Activate the virtual environment and download the requirements
-         ```
-         source ast_env/bin/activate
-         pip install -r requirements.txt
-         ```
+   2. Create a virtual environment named ast_env with all the necessary libraries listed in environment.yml
+      ```
+      $ conda env create -f environment.yml
+      ```
+   3. and activate it
+      ```
+      $ source activate ast_env
+      ```
 
 ## The code
 
@@ -147,27 +129,14 @@ The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'p
 
 1. Remove the virtual environment
 
-   - **Anaconda**
-
-      Get out of the environment
-      ```
-      conda deactivate
-      ```
-      delete the environment
-      ```
-      conda env remove -n ast_env
-      ```
-
-   - **virtualenv**
-
-      Get out of the environment
-      ```
-      deactivate
-      ```
-      delete the environment
-      ```
-      rm -r ast_env
-      ```
+   Get out of the environment
+   ```
+   conda deactivate
+   ```
+   delete the environment
+   ```
+   conda env remove -n ast_env
+   ```
 
 2. Delete the project folder
 
