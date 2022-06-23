@@ -48,7 +48,7 @@ Let's now see how we can build a classifier that can distinguish between the 4 c
    ```
    Enter the repository
    ```
-   cd .........................................................................
+   cd Asteroid-Classification
    ```
 
 2. Create a virtual environment with all the libraries that are needed to run the python scripts. You can create a virtual environment using Anaconda or virtualenv.
@@ -171,7 +171,7 @@ The confusion matrix plot 'conv_nn_confusion_matrix.png' will be saved on the 'p
 
 2. Delete the project folder
 ```
-rm -r ..............................................
+rm -r Asteroid-Classification
 ```
 
 ## Conclusions
