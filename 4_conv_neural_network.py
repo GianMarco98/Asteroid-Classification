@@ -96,7 +96,7 @@ def create_model(hp):
                                                           step=1))(norm_layer)
 
     hidden_layer = keras.layers.MaxPooling1D(pool_size=2)(hidden_layer)
-    """
+    
     hidden_layer = keras.layers.Conv1D(filters=hp.Int("2nd_filters",
                                                       min_value=16,
                                                       max_value=128,
@@ -108,7 +108,7 @@ def create_model(hp):
                                                           step=1))(hidden_layer)
 
     hidden_layer = keras.layers.MaxPooling1D(pool_size=2)(hidden_layer)
-    """
+    
     hidden_layer = keras.layers.Flatten()(hidden_layer)
 
     hidden_layer = keras.layers.Dense(hp.Int("units", min_value=8, max_value=64, step=8),
@@ -132,10 +132,10 @@ def create_model(hp):
     return model
 
 
-# Let's create our tuner, optimizing a val_loss search
-tuner = kt.RandomSearch(create_model,
+# Let's create our tuner, optimizing a val_loss search using a Hyperband optimization algorithm
+tuner = kt.Hyperband(hypermodel = create_model,
                         objective = 'val_loss',
-                        max_trials=25,
+                        max_epochs = 50,
                         project_name = 'tuner_models')
 
 # Number of epochs and batch size
